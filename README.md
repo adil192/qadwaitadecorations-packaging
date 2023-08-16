@@ -1,3 +1,0 @@
-# qadwaitadecorations
-
-The qadwaitadecorations package
