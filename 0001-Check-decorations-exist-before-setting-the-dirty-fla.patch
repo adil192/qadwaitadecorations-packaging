@@ -1,0 +1,29 @@
+From 0dfded015cb27cf50ac967627d8bc5ba549dfee8 Mon Sep 17 00:00:00 2001
+From: Jan Grulich <jgrulich@redhat.com>
+Date: Mon, 20 Nov 2023 12:34:35 +0100
+Subject: [PATCH 1/4] Check decorations exist before setting the dirty flag for
+ repaint (#42)
+
+Avoids a potential crash when calling a method on a nullptr.
+---
+ src/qadwaitadecorations.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/src/qadwaitadecorations.cpp b/src/qadwaitadecorations.cpp
+index aec9e02..7a689f3 100644
+--- a/src/qadwaitadecorations.cpp
++++ b/src/qadwaitadecorations.cpp
+@@ -695,7 +695,9 @@ QRect QAdwaitaDecorations::windowContentGeometry() const
+ void QAdwaitaDecorations::forceRepaint()
+ {
+     // Set dirty flag
+-    waylandWindow()->decoration()->update();
++    if (waylandWindow()->decoration()) {
++        waylandWindow()->decoration()->update();
++    }
+     // Force re-paint
+     // NOTE: not sure it's correct, but it's the only way to make it work
+     if (waylandWindow()->backingStore()) {
+-- 
+2.42.0
+
