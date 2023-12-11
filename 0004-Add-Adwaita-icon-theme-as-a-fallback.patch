@@ -8,11 +8,11 @@ Subject: [PATCH 4/4] Add Adwaita icon theme as a fallback
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/src/qadwaitadecorations.cpp b/src/qadwaitadecorations.cpp
-index f53e130..2bf794d 100644
+index f53e130..d1ecd2c 100644
 --- a/src/qadwaitadecorations.cpp
 +++ b/src/qadwaitadecorations.cpp
-@@ -177,7 +177,10 @@ void QAdwaitaDecorations::updateColors(bool useDarkColors)
- 
+@@ -177,8 +177,14 @@ void QAdwaitaDecorations::updateColors(bool useDarkColors)
+
  QString getIconSvg(const QString &iconName)
  {
 -    const QStringList themeNames = { QIcon::themeName(), QIcon::fallbackThemeName() };
@@ -21,8 +21,12 @@ index f53e130..2bf794d 100644
 +    qCDebug(QAdwaitaDecorationsLog) << "Icon themes: " << themeNames;
 +
      for (const QString &themeName : themeNames) {
++        if (themeName.isEmpty())
++            continue;
++
          for (const QString &path : QIcon::themeSearchPaths()) {
              if (path.startsWith(QLatin1Char(':')))
--- 
+                 continue;
+--
 2.42.0
 
