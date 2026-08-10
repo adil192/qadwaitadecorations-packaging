@@ -1,17 +1,16 @@
-%bcond qt5 %[%{undefined rhel} || 0%{?rhel} < 10]
-
-%if 0%{?fedora} && 0%{?fedora} < 41
+%global qt5 0
+%global qt6 1
 %global with_qt6 1
-%endif
 
 Name:           qadwaitadecorations
+Epoch:          1
 Version:        0.1.7
-Release:        4%{?dist}
+Release:        7%{?dist}
 Summary:        Qt decoration plugin implementing Adwaita-like client-side decorations
 
 License:        LGPL-2.1-or-later
-URL:            https://github.com/FedoraQt/QAdwaitaDecorations
-Source0:        https://github.com/FedoraQt/QAdwaitaDecorations/archive/%{version}/QAdwaitaDecorations-%{version}.tar.gz
+URL:            https://github.com/adil192/QAdwaitaDecorations
+Source0:        https://github.com/adil192/QAdwaitaDecorations/archive/refs/heads/main.zip
 
 
 BuildRequires:  cmake
@@ -57,7 +56,7 @@ Supplements:   (qt6-qtbase and gnome-shell)
 %endif
 
 %prep
-%autosetup -p1 -n  QAdwaitaDecorations-%{version}
+%autosetup -p1 -n  QAdwaitaDecorations-main
 
 %build
 %if %{with qt5}
@@ -98,6 +97,15 @@ Supplements:   (qt6-qtbase and gnome-shell)
 %endif
 
 %changelog
+* Sat Aug 22 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-7
+- Fixed the min/max/close buttons having a resize cursor on hover.
+
+* Tue Aug 11 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-6
+- Worked around qt6ct not updating instantly when changing light/dark mode. If the color scheme isn't available yet, it will try again in a few seconds.
+
+* Mon Aug 10 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-5
+- Switched to my Windows-inspired fork of QAdwaitaDecorations
+
 * Thu Jul 16 2026 Fedora Release Engineering <releng@fedoraproject.org> - 0.1.7-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_45_Mass_Rebuild
 
