@@ -2,15 +2,18 @@
 %global qt6 1
 %global with_qt6 1
 
+%global commit      96a9476f8983acc2ad9c496e0a39a2fdce7d9095
+%global shortcommit %{sub %{commit} 1 7}
+
 Name:           qadwaitadecorations
 Epoch:          1
 Version:        0.1.7
-Release:        9%{?dist}
+Release:        10.%{shortcommit}%{?dist}
 Summary:        Qt decoration plugin implementing Adwaita-like client-side decorations
 
 License:        LGPL-2.1-or-later
 URL:            https://github.com/adil192/QAdwaitaDecorations
-Source0:        https://github.com/adil192/QAdwaitaDecorations/archive/refs/heads/main.zip
+Source0:        https://github.com/FedoraQt/QAdwaitaDecorations/archive/%{commit}/QAdwaitaDecorations-%{commit}.tar.gz
 
 
 BuildRequires:  cmake
@@ -56,7 +59,7 @@ Supplements:   (qt6-qtbase and gnome-shell)
 %endif
 
 %prep
-%autosetup -p1 -n  QAdwaitaDecorations-main
+%autosetup -p1 -n  QAdwaitaDecorations-%{commit}
 
 %build
 %if %{with qt5}
@@ -97,7 +100,10 @@ Supplements:   (qt6-qtbase and gnome-shell)
 %endif
 
 %changelog
-* Wed Aug 26 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-9
+* Sun Sep 07 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-10
+- Build from pinned commit
+
+* Sat Sep 06 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-9
 - Improved window button colors.
 
 * Wed Aug 26 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-8
