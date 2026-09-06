@@ -100,10 +100,10 @@ Supplements:   (qt6-qtbase and gnome-shell)
 %endif
 
 %changelog
-* Sun Sep 07 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-10
+* Mon Sep 07 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-10
 - Build from pinned commit
 
-* Sat Sep 06 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-9
+* Sun Sep 06 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-9
 - Improved window button colors.
 
 * Wed Aug 26 2026 Adil Hanney <adilhanney@disroot.org> - 0.1.7-8
